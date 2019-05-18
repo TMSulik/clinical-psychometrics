@@ -1,0 +1,251 @@
+/*
+  ========================================
+  Body
+  ========================================
+*/
+
+.App {
+  text-align: center;
+}
+
+.App-link {
+  color: #D9D8BA; /* Tana */
+}
+
+body {
+  background-color: #D9D8BA; /* Tana */
+  color: black;
+}
+
+/*
+  ========================================
+  Header
+  ========================================
+*/
+
+h1 {
+  font-family: 'Economica', sans-serif;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 10vmin;
+  pointer-events: none;
+}
+
+.App-header {
+  background-color: #282c34; /* Shark */
+  min-height: 20vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  /* color: #D9D8BA; Tana */
+  color: #FCFCF7; /* Ecru */
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.mind-map {
+  height: 200px;
+}
+
+/*
+  ========================================
+  Navbar
+  ========================================
+*/
+
+/* Add a dark background color to the top navigation */
+.topnav {
+  background-color: #5D5C61; /* Scarpa Flow */
+  overflow: hidden;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+  float: left;
+  color: #f2f2f2; /* Concrete */
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+  background-color: #ddd; /* Alto */
+  color: black;
+}
+
+/* Add a color to the active/current link */
+.topnav a.active {
+  background-color: #7395AE; /* Bermuda Grey */
+  color: white;
+}
+
+/*
+  ========================================
+  Adjective Checklist
+  ========================================
+*/
+
+.checklist {
+  float: left;
+  text-align: left;
+}
+
+.column {
+  width: 100%;
+  float: left;
+  margin-left: 8px;
+}
+
+@media (min-width: 350px) {
+  .column {
+    columns: 3;
+  }
+}
+
+@media (min-width: 700px) {
+  .column {
+    columns: 5;
+  }
+}
+
+@media (min-width: 1000px) {
+  .column {
+    columns: 7;
+  }
+}
+
+ul {
+  list-style-type: none;
+}
+
+.btn {
+  width: 60%;
+  height: 30px;
+}
+
+
+
+/*
+  ========================================
+  Thematic Apperception Test
+  ========================================
+*/
+
+.tat-image {
+  width: 80%;
+}
+
+.prompt {
+  background-color: #5D5C61; /* Scarpa Flow */
+  color: #FCFCF7; /* Ecru */
+  text-align: left;
+  padding-left: 8%;
+  padding-bottom: 20px;
+  margin-left: 10%;
+  margin-right: 10%;
+  border: 12px solid #282c34; /* Shark */
+}
+
+/* .tat-response {
+  height: 500px;
+} */
+
+.clearfix {
+  overflow: auto;
+}
+
+/*
+  ========================================
+  Graph
+  ========================================
+*/
+
+/* .graph-header {
+  padding-bottom: 0;
+} */
+
+.graph-wrapper {
+  background: #D9D8BA; /* Tana */
+  background: #459CB6; /* Boston Blue */
+  padding: 1px;
+}
+
+.graph {
+  display: flex;
+  position: relative;
+  max-width: 1000px;
+  height: 400px; 
+  background: #73D1DC; /* Viking */
+  margin: 8%;
+  border: 6px solid #5D5C61; /* Scarpa Flow */
+}
+
+.line {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: #BFF0E7; /* Cruise */
+  left: 10%;
+}
+
+.bar-text-content {
+  height: 100%;
+  width: 20%;
+  background: #73D1DC; /* Viking */
+}
+
+.bar-lines-container {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  background: #7395AE; /* Bermuda Grey */
+}
+
+.bar {
+  height: 6.4%;
+  background: #282c34; /* Shark */
+  z-index: 25;
+  border-bottom: 1px solid cyan;
+  border-right: 1px solid cyan;
+}
+
+.text {
+  height: 6.66%;
+
+}
+
+/*
+  ========================================
+  Footer
+  ========================================
+*/
+
+.footer {
+  background-color: #282c34; /* Shark */
+}
+
+.left-caption {
+  margin-left: 50px;
+  display:inline-block;
+  margin-right: 20%;
+  color: cyan;
+}
+
+.right-caption {
+  margin-right: 50px;
+  display: inline-block;
+}
