@@ -1,17 +1,33 @@
 import React from "react";
 import '../App.css';
 import { needScale } from '../services/Scales';
+// import { tallyScaleItem } from '../services/ProcessScale';
 
 class Profiles extends React.Component {
 
   state = { 
     needScale: [],
-    personalTraits: this.props.traits
+    personalTraits: this.props.traits,
+    percent: 1.0
   };
 
   componentDidMount() {
     this.setState({ needScale: needScale });
     console.log("TRAITS in Profiles: ", this.state.personalTraits);
+  }
+
+  tallyScaleItem = (item) => {
+    let result = 0;
+    const traits = this.state.personalTraits;
+    for(let i = 0; i < traits.length; i++) {
+      if(item.indicative.includes(traits[i])) {
+        result++;  
+      } 
+      if(item.contraindicative.includes(traits[i])) {
+        result--;  
+      }
+    }
+    return result + item.contraindicative.length; 
   }
 
   renderLines() {
@@ -39,9 +55,10 @@ class Profiles extends React.Component {
     }
     // const { needScale } = this.props
     const needScale = this.state.needScale; 
-
+ 
     return needScale.map(trait => {
-      const percent = (trait.total / trait.max) * 100;
+      const denominator = trait.indicative.length + trait.contraindicative.length;
+      const percent = (this.tallyScaleItem(trait) / denominator ) * 100;
       return (
         <Bar
           percent={percent}

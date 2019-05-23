@@ -12,7 +12,6 @@ const Header = () => {
         <h1>
           Mapping the Subjective Self
           <img src={logo} className="App-logo" alt="logo" />
-        
           <img src={mind} className="mind-map" alt="the mind" />
         </h1>
       </header>

@@ -1,11 +1,15 @@
 import React from "react";
+import TextInput from '../components/TextInput';
 import { tats } from '../services/Pictures';
 import { randomize } from '../services/Shuffle';
 import '../App.css';
 
 class TAT extends React.Component {
 
-  state = { tat: [] };
+  state = { 
+    tat: [],
+    // past: "Nonsense"
+  };
 
   componentDidMount() {
     randomize(tats);
@@ -15,26 +19,45 @@ class TAT extends React.Component {
   render() {
     return (
       <div>
-        {/* <img src={require(`../../images/${inkblot}`)} alt={(`blot#${this.getIndex(inkblot)}`)} />
-        <img src={mind} className="mind-map" alt="the mind" /> */}
         <h1>THEMATIC APPERCEPTION TEST</h1>
-        <img src={require(`../images/tat-5.jpg`)} alt="apperception" className="tat-image" />
+        <img src={require(`../images/tat-31.jpg`)} alt="apperception" className="tat-image" />
         <div className="tat-directions clearfix">
-          <ul className="prompt">
-          <h2>Instructions</h2>
-          <p>Tell the most dramatic story you can think of about this picture.</p>
-            <li>What has led up to the event depicted?</li>
-            <li>What is happening at the moment?</li>
-            <li>What the people are feeling and thinking?</li>
-            <li>What will be a likely outcome?</li>
-          </ul>
+          <div className="prompt">
+            <h2>Instructions</h2>
+            <h4> Tell the most dramatic story you can think of about this picture.</h4>
+            <h4>What led up to the event depicted?</h4>
+            <textarea name="body"
+              className="text-field"
+              onChangeText={(past) => this.setState({past})}
+              value={this.state.past}
+            />
+            
+            <TextInput
+              {...this.props} // Inherit any props passed to it; e.g., multiline, numberOfLines below
+              editable = {true}
+              maxLength = {40}
+            />
+            <h4>What is happening at the moment?</h4>
+            <textarea name="body"
+              className="text-field"
+              onChange={(present) => this.setState({present})}
+              value={this.state.present}
+            />
+            <h4>What the people are feeling and thinking?</h4>
+            <textarea name="body"
+              className="text-field"
+              onChange={(feeling) => this.setState({feeling})}
+              value={this.state.feeling}
+            />
+            <h4>What will be a likely outcome?</h4>
+            <textarea name="body"
+              className="text-field"
+              onChange={(future) => this.setState({future})}
+              value={this.state.future}
+            />
+            <button className="btn btn-default tat-submit" onClick={this.save}>Submit</button>
+          </div>
         </div>
-        <form className="tat-response">
-          <label>
-            <input type="text" name="name" />
-          </label>
-          <input type="submit" value="Submit" />
-        </form>
       </div>
     );
   }
