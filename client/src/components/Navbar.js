@@ -27,7 +27,6 @@ const Navbar = () => {
       <Link to="/tat">TAT</Link>
       <Link to="/demographic">DEMOGRAPHIC</Link>
       <Link to="/profiles">PROFILES</Link>
- 
     </div>
   );
 }
