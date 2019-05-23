@@ -3,6 +3,7 @@ import './App.css';
 import { BrowserRouter, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Navbar from './components/Navbar';
+import Home from './components/Home';
 import ACL from './components/ACL';
 import TAT from './components/TAT';
 import Profiles from './components/Profiles';
@@ -42,6 +43,7 @@ class App extends React.Component {
       <Header/>
       <BrowserRouter>
         <Navbar/>
+        <Route exact path="/home" component={Home}/>
         <Route 
           exact path="/acl" 
           render={(props) => <ACL {...props} traits={this.state.personalTraits} onSubmit={this.onSubmit} />}

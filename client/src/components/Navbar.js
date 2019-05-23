@@ -22,7 +22,7 @@ const Navbar = () => {
   return (
     <div className="topnav">
       {/* <NavItem to='/' index={true} >HOME</NavItem> */}
-      <Link to="/">HOME</Link>
+      <Link to="/home">HOME</Link>
       <Link to="/acl">ACL</Link>
       <Link to="/tat">TAT</Link>
       <Link to="/demographic">DEMOGRAPHIC</Link>
