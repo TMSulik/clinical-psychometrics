@@ -8,7 +8,8 @@ class Profiles extends React.Component {
   state = { 
     needScale: [],
     personalTraits: this.props.traits,
-    percent: 1.0
+    percent: 1.0,
+    past: this.props.past
   };
 
   componentDidMount() {
@@ -58,7 +59,10 @@ class Profiles extends React.Component {
  
     return needScale.map(trait => {
       const denominator = trait.indicative.length + trait.contraindicative.length;
-      const percent = (this.tallyScaleItem(trait) / denominator ) * 100;
+      let percent = (this.tallyScaleItem(trait) / denominator ) * 100;
+      if(this.tallyScaleItem(trait) === 0) {
+        percent = 50;
+      }
       return (
         <Bar
           percent={percent}
@@ -88,7 +92,8 @@ class Profiles extends React.Component {
       <div>
         <h1>Personality Profiles</h1>
         <div className="graph-wrapper"> 
-        <h2 className="graph-header">Need Scale</h2>         
+        <h2 className="graph-header">Need Scale</h2>
+        <p>Assessment of psychological wants or needs</p>         
           <div className="graph">
             {this.renderBarText()}
             <div className="bar-lines-container"> 

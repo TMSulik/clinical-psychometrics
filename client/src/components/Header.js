@@ -1,7 +1,7 @@
 import React from 'react';
 import logo from '../logo.svg';
 // import mind from '../images/the_psyche.jpg';
-import mind from '../images/ai.jpg';
+import mind from '../images/persona.jpg';
 import '../App.css';
 
 const Header = () => {

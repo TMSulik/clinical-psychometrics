@@ -10,10 +10,9 @@ import Profiles from './components/Profiles';
 import Demographic from './components/Demographic';
 import Footer from './components/Footer';
 import { adjectives } from './services/ACL';
-
 class App extends React.Component {
 
-  state = { acl: [], personalTraits: ["charming"]  };
+  state = { acl: [], personalTraits: []  };
 
   componentDidMount() {
     this.setState({ acl: adjectives });
@@ -30,7 +29,6 @@ class App extends React.Component {
     );
   }
 
-
   onSubmit = (traits) => {
     console.log('App traits:', traits);
     this.setState({personalTraits: traits});
@@ -46,14 +44,19 @@ class App extends React.Component {
         <Route exact path="/home" component={Home}/>
         <Route 
           exact path="/acl" 
-          render={(props) => <ACL {...props} traits={this.state.personalTraits} onSubmit={this.onSubmit} />}
+          render={(props) => <ACL {...props} 
+          traits={this.state.personalTraits} 
+          onSubmit={this.onSubmit} />}
         />
         <Route exact path="/tat" component={TAT}/>
-        <Route exact path="/demographic" component={Demographic}/>
         <Route 
-        exact path="/profiles" 
-        render={(props) => <Profiles {...props} traits={this.state.personalTraits} />}
-      />
+          exact path="/demographic" 
+          component={Demographic}
+        />
+        <Route 
+          exact path="/profiles" 
+          render={(props) => <Profiles {...props} traits={this.state.personalTraits} />}
+        />
       </BrowserRouter>
       <Footer/>
       </div>

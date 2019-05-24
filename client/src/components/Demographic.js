@@ -8,7 +8,7 @@ class Demographic extends React.Component {
     return (      
       <div>
         <h1>PERSONAL INFORMATION</h1>
-        <div className="homepage">
+        <div className="wallpaper">
         </div>
       </div>
     );

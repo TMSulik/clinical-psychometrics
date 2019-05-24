@@ -184,6 +184,19 @@ ul {
 .clearfix {
   overflow: auto;
 }
+
+/*
+  ========================================
+  Demographic Questions
+  ========================================
+*/
+
+.wallpaper {
+  background-image: url("./images/persona.jpg");
+  min-height: 500px;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
  
 /*
   ========================================
@@ -208,6 +221,7 @@ ul {
   height: 400px; 
   background: #73D1DC; /* Viking */
   margin: 8%;
+  margin-top: 0;
   border: 6px solid #5D5C61; /* Scarpa Flow */
 }
  

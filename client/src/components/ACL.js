@@ -2,11 +2,12 @@ import React from "react";
 import { adjectives } from '../services/ACL';
 import { randomize } from '../services/Shuffle';
 import '../App.css';
-
-
 class ACL extends React.Component {
 
-  state = { acl: [], personalTraits: [] };
+  state = { 
+    acl: [], 
+    personalTraits: [] 
+  };
 
   componentDidMount = () => {
     console.log("ACL props: ", this.props);
@@ -73,6 +74,10 @@ class ACL extends React.Component {
     return (
     <div className="clearfix">
       <h1>Adjective Checklist</h1>
+      <ul>
+        <li>Check any words that describe yourself</li>
+        <li>Click SUBMIT when you are done</li>
+      </ul>
       <div className="container">
         <ul className="checklist column">
           {this.renderChecklist()}
