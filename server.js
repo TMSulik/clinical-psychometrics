@@ -10,6 +10,22 @@ const port = process.env.PORT || 8080;
 
 const db = require("./models");
 
+db.createUser(
+  {
+    name: "Username",
+    password: "1234567",
+    selfDescriptors: ["clever"],
+    themes: {
+      past: "Something bad happened",
+      present: "People are paying the piper",
+      future: "It is unlikely they will pull through",
+      feelings: "They are taking it in their stride"
+    } 
+  }
+);
+
+
+
 // set the view engine to ejs // WHat is this?
 // app.set('view engine', 'ejs');
 

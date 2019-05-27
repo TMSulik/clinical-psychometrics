@@ -1,6 +1,6 @@
 import React from "react";
 import { adjectives } from '../services/ACL';
-import { randomize } from '../services/Shuffle';
+// import { randomize } from '../services/Shuffle';
 import '../App.css';
 class ACL extends React.Component {
 
@@ -11,7 +11,7 @@ class ACL extends React.Component {
 
   componentDidMount = () => {
     console.log("ACL props: ", this.props);
-    randomize(adjectives);
+    // randomize(adjectives);
     this.setState({ acl: adjectives });
   }
 
@@ -81,8 +81,8 @@ class ACL extends React.Component {
       <div className="container">
         <ul className="checklist column">
           {this.renderChecklist()}
-          <button className="btn btn-default" onClick={this.save}>Submit</button>
         </ul>
+        <button className="btn btn-default" onClick={this.save}>Submit</button>
         <br/>
       </div>
     </div>

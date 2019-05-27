@@ -10,6 +10,7 @@ import Profiles from './components/Profiles';
 import Demographic from './components/Demographic';
 import Footer from './components/Footer';
 import { adjectives } from './services/ACL';
+
 class App extends React.Component {
 
   state = { acl: [], personalTraits: []  };

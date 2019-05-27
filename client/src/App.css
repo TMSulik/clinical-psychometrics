@@ -26,7 +26,7 @@ body {
 h1 {
   font-family: 'Economica', sans-serif;
 }
- 
+
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 10vmin;
@@ -55,8 +55,13 @@ h1 {
 }
  
 .mind-map {
-  height: 200px;
+  /* height: 200px; */
+  width: 50%;
 }
+
+/* .persona {
+  vertical-align: top;
+} */
  
 /*
   ========================================
@@ -100,9 +105,15 @@ h1 {
  
 .homepage {
   background-image: url("./images/lying-on-the-couch.jpg");
-  min-height: 500px;
+  min-height: 520px;
   background-size: cover;
   background-repeat: no-repeat;
+}
+
+.acl-btn {
+  float: right;
+  margin: 20px 20px 0 20px;
+  /* margin-bottom: 0; */
 }
  
 /*
@@ -110,6 +121,10 @@ h1 {
   Adjective Checklist
   ========================================
 */
+
+.container {
+  padding-right: 20px;
+}
  
 .checklist {
   float: left;
@@ -181,9 +196,17 @@ ul {
   width: 90%;
 }
  
-.clearfix {
+/* .clearfix {
   overflow: auto;
+} */
+
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
 }
+
+
 
 /*
   ========================================
@@ -203,10 +226,6 @@ ul {
   Graph
   ========================================
 */
- 
-/* .graph-header {
-  padding-bottom: 0;
-} */
  
 .graph-wrapper {
   background: #D9D8BA; /* Tana */
@@ -257,6 +276,21 @@ ul {
  
 .text {
   height: 6.66%;
+}
+
+.descriptions {
+  padding: 20px;
+  text-align: left;
+}
+
+.inset {
+  float: right;
+  width: 30%;
+  margin: 10px;
+}
+
+.text-box {
+  min-height: 400px;
 }
  
 /*
