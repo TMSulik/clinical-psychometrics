@@ -1,58 +1,34 @@
 const express = require('express');
+// Initialize Express
 const app = express();
-
-// What is 'morgan'?
-const logger = require("morgan");
 const mongoose = require("mongoose");
 
+// This has something to do with JSON
+const bodyParser = require("body-parser"); 
+
 // process.env.PORT lets the port be set by Heroku
-const port = process.env.PORT || 8080;
+const PORT = process.env.PORT || process.argv[2] || 8080;
 
-const db = require("./models");
+// const db = require("./models");
 
-db.createUser(
-  {
-    name: "Username",
-    password: "1234567",
-    selfDescriptors: ["clever"],
-    themes: {
-      past: "Something bad happened",
-      present: "People are paying the piper",
-      future: "It is unlikely they will pull through",
-      feelings: "They are taking it in their stride"
-    } 
-  }
-);
+// Use body-parser for handling form submissions
+app.use(bodyParser.urlencoded({ extended: true }));
 
-
-
-// set the view engine to ejs // WHat is this?
-// app.set('view engine', 'ejs');
-
-// Configure middleware
-// Use morgan logger for logging requests
-app.use(logger("dev"));
-// Parse request body as JSON
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
-
-// Make public a static folder
-// Why? What is thei for?
+// Use express.static to serve the public folder as a static directory
 app.use(express.static("public"));
 
-// make express look in the public directory for assets (css/js/img)
-// app.use(express.static(__dirname + '/public'));
+// Controllers
+const router = require("./routes/api.js");
+app.use(router);
+
+// Connect to the Mongo DB (shouldn't be mongoHeadlines?)
+const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
 
 // Connect to the Mongo DB
-// What is 'unit 18 populater'?
-mongoose.connect("mongodb://localhost/unit18Populater", { useNewUrlParser: true });
+mongoose.Promise = Promise;
+mongoose.connect(MONGODB_URI);
 
-// set the home page route
-app.get('/', function(req, res) {
-    // ejs render automatically looks in the views folder
-    res.render('index');
-});
-
-app.listen(port, function() {
-    console.log('Our app is running on http://localhost:' + port);
+// Start the server
+app.listen(PORT, function () {
+  console.log(`This application is running on port: ${PORT}`);
 });

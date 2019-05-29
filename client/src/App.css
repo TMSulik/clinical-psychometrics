@@ -213,6 +213,30 @@ ul {
   ========================================
 */
 
+.questionaire {
+  background-color: #5D5C61; /* Scarpa Flow */
+  color: #FCFCF7; /* Ecru */
+  text-align: left;
+  font-size: 1.4em;
+  padding-right: 30px;
+  padding-bottom: 20px;
+  margin: 12px 10%;
+  border: 12px solid #282c34; /* Shark */
+}
+
+.question {
+  margin: 20px 0 20px 0;
+}
+
+.personal-submit  {
+  margin-left: 40px;
+  width: 90%;
+}
+
+.dropdown {
+  font-size: 16px;
+} 
+
 .wallpaper {
   background-image: url("./images/persona.jpg");
   min-height: 500px;
