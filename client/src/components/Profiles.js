@@ -1,11 +1,11 @@
 import React from "react";
 import '../App.css';
-import { needScale, topicalScales, egogram, origenceIntellectance } from '../services/Scales';
+import { modusOperandi, needScale, topicalScales, egogram, origenceIntellectance } from '../services/Scales';
 // import { tallyScaleItem } from '../services/ProcessScale';
-
 class Profiles extends React.Component {
 
   state = { 
+    modusOperandi: [],
     needScale: [],
     topicalScales: [], 
     egogram: [], 
@@ -13,10 +13,12 @@ class Profiles extends React.Component {
     personalTraits: this.props.traits,
     percent: 1.0,
     past: this.props.past
+    // numerator: 0
   };
 
   componentDidMount() {
-    this.setState({ 
+    this.setState({
+      modusOperandi: modusOperandi, 
       needScale: needScale,
       topicalScales: topicalScales,
       egogram: egogram, 
@@ -60,16 +62,18 @@ class Profiles extends React.Component {
   }
 
   renderBars(scale) {
+    const barHeight = this.setBarHeight(scale).bar;
     const Bar = ({percent}) => {
       return (
-        <div className="bar" style={{width: `${percent}%`}}/>
+        <div style={barHeight}>
+          <div className="bar" style={{width: `${percent}%`}} />
+        </div>
       )
-    }
-    // const { needScale } = this.props
-    // const needScale = this.state.needScale; 
- 
+    } 
     return scale.map(trait => {
       const denominator = trait.indicative.length + trait.contraindicative.length;
+      // this.setState({ numerator: tallyScaleItem(trait, this.state.personalTraits) });
+      // let percent = (this.state.numerator / denominator ) * 100;
       let percent = (this.tallyScaleItem(trait) / denominator ) * 100;
       return (
         <Bar
@@ -80,13 +84,53 @@ class Profiles extends React.Component {
     });
   }
 
-  renderBarText() {
-    const needScale = this.state.needScale;
+  /*
+  Modus Operandi Scales 
+The Modus Operandi Scales assess ways in which the individual approached the task of describing themselves
+  */
+
+  setBarHeight = (scale) => {
+    switch(scale) {
+      case modusOperandi:
+        return { 
+          heading: 'Modus Operandi Scales',
+          caption: 'Assesment of individual approaches to self description',
+          text: { height: '25%' },
+          bar: { height: '25%' },
+          graph: { height: '100px'}
+        };
+      case needScale:
+        return { 
+          heading: 'Need Scale',
+          caption: 'Assessment of psychological wants or needs',
+          text: { height: '6.66%' },
+          bar: { height: '6.66%' },
+          graph: { height: '400px'}
+        };
+      case origenceIntellectance:
+        return { 
+          heading: 'Origence-Intellectance',
+          caption: 'Balance between affective versus rational tendencies',
+          text: { height: '25%' },
+          bar: { height: '24.3%' },
+          graph: { height: '100px'}
+        };
+      default:
+        return  {
+          text: { height: '25%' },
+          bar: { height: '25%' } 
+        };
+    }
+
+  }
+
+  renderBarText(scale) {
+    const barHeight = this.setBarHeight(scale).text;
     return (
       <div className="bar-text-content">
         {
-          needScale.map((trait) => (
-            <div className="text" key={trait.trait}>
+          scale.map((trait) => (
+            <div className="text" style={barHeight} key={trait.trait}>
               {trait.trait}
             </div>
           ))
@@ -95,22 +139,31 @@ class Profiles extends React.Component {
     )
   }
 
+  renderGraph(scale) {
+    const graphHeight = this.setBarHeight(scale).graph;
+    const heading = this.setBarHeight(scale).heading;
+    const caption = this.setBarHeight(scale).caption;
+    return (
+      <div className="graph-wrapper"> 
+        <h2 className="graph-header">{heading}</h2>
+        <p>{caption}</p>     
+        <div className="graph" style={graphHeight}>
+          {this.renderBarText(scale)}
+          <div className="bar-lines-container"> 
+            {this.renderLines()}
+            {this.renderBars(scale)}
+          </div> 
+        </div>
+      </div>
+    );
+  }
+
   render() {
+    const modus = this.state.modusOperandi;
     const needScale = this.state.needScale;
+    const welsh = this.state.origenceIntellectance;
     return (
       <div>
-        <h1>Personality Profiles</h1>
-        <div className="graph-wrapper"> 
-          <h2 className="graph-header">Need Scale</h2>
-          <p>Assessment of psychological wants or needs</p>         
-          <div className="graph">
-            {this.renderBarText()}
-            <div className="bar-lines-container"> 
-              {this.renderLines()}
-              {this.renderBars(needScale)}
-            </div> 
-          </div>
-        </div>
         <h1>TAT Responses</h1>
         <div className="graph-wrapper">
         <h2 className="graph-header">Picture 31</h2>
@@ -119,7 +172,7 @@ class Profiles extends React.Component {
             <div className="clearfix">
               
               <img src={require(`../images/tat-29.jpg`)} alt="apperception" className="inset" />
-              <div >
+              <div>
                 <h3>Past</h3>
                 <p>A demigod was executed in the Holy Land over two millennia ago. He vowed one day to return to usher in the End of Time.</p>
                 <h3>Present</h3>
@@ -133,6 +186,10 @@ class Profiles extends React.Component {
             </div>
           </div>
         </div>
+        <h1>Personality Profiles</h1>
+        {this.renderGraph(modus)}
+        {this.renderGraph(needScale)}
+        {this.renderGraph(welsh)}
       </div>
     );
   }

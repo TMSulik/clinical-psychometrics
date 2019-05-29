@@ -8,6 +8,7 @@ import ACL from './components/ACL';
 import TAT from './components/TAT';
 import Profiles from './components/Profiles';
 import Demographic from './components/Demographic';
+// import Login from './components/Login';
 import Footer from './components/Footer';
 import { adjectives } from './services/ACL';
 

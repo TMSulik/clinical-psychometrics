@@ -1,9 +1,9 @@
 import React from 'react';
-// import React, {PropTypes} from 'react';
 import { Link } from 'react-router-dom';
 // import NavLink from "./NavLink";
 // import NavItem from "./NavLink";
 import '../App.css';
+// import { Login } from "./Login";
  
 const Navbar = () => {
  
@@ -27,6 +27,7 @@ const Navbar = () => {
       <Link to="/tat">TAT</Link>
       <Link to="/demographic">DEMOGRAPHIC</Link>
       <Link to="/profiles">PROFILES</Link>
+      <button className="btn-default login-btn">Login</button>
     </div>
   );
 }
