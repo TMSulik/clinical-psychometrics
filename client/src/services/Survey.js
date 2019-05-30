@@ -42,7 +42,8 @@ export const surveyQuestions = [
     options: [
       'Firstborn', 
       'Middle child', 
-      'Youngest']
+      'Youngest',
+      'Only child']
   },
   {
     question: 'What is your marital status?',
@@ -88,5 +89,12 @@ export const surveyQuestions = [
     options: [
       'Yes', 
       'No']
+  },
+  {
+    question: 'At the current moment, I am neither high on illicit drugs, nor inebriated.',
+    options: [
+      'True', 
+      'False',
+      'Debatable']
   }
 ];

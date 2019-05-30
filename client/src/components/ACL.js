@@ -1,6 +1,7 @@
 import React from "react";
 import { adjectives } from '../services/ACL';
-// import { randomize } from '../services/Shuffle';
+import axios from 'axios';
+import { randomize } from '../services/Shuffle';
 import '../App.css';
 class ACL extends React.Component {
 
@@ -11,7 +12,7 @@ class ACL extends React.Component {
 
   componentDidMount = () => {
     console.log("ACL props: ", this.props);
-    // randomize(adjectives);
+    randomize(adjectives);
     this.setState({ acl: adjectives });
   }
 
@@ -46,10 +47,11 @@ class ACL extends React.Component {
   
   };
 
-  save = () => {
+  save = async () => {
+    const traits = await axios.post(`/api/traits`, this.state.personalTraits);
+    this.props.onSubmit(traits.data);
     this.routeChange();
-    this.props.onSubmit(this.state.personalTraits);
-  }
+  };
 
   renderChecklist = () => {    
     return (

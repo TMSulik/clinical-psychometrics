@@ -167,20 +167,20 @@ The Modus Operandi Scales assess ways in which the individual approached the tas
         <h1>TAT Responses</h1>
         <div className="graph-wrapper">
         <h2 className="graph-header">Picture 31</h2>
-          <div className="graph descriptions text-box">
+          <div className="graph descriptions text-box clearfix">
 
             <div className="clearfix">
               
               <img src={require(`../images/tat-29.jpg`)} alt="apperception" className="inset" />
               <div>
                 <h3>Past</h3>
-                <p>A demigod was executed in the Holy Land over two millennia ago. He vowed one day to return to usher in the End of Time.</p>
+                <p>A demigod was executed in the Holy Land over two millennia ago, all according to plan. He vowed one day to return to usher in the End of Time.</p>
                 <h3>Present</h3>
-                <p>He is now reigning down from Heaven in all his glory.</p>
+                <p>The Fourse Horsemen of the Apocalypse have mounted their steeds. Global, catastrophic climate change is now upon us. The angel Gabriel has sounded his claxon.</p>
                 <h3>Future</h3>
-                <p>He will soon sit at the right hand of the Father to judge the quick and the dead.</p>
+                <p> The Son of Man, in all his glory, will descend in the clouds.  Mark my word. He will sit at the right hand of the Father to judge the quick and the dead.</p>
                 <h3>Feelings</h3>
-                <p>We are all very afraid: where will YOU spend eternity?</p>
+                <p>We are now all very, very fearful; we are sore afraid. And reasonably so: where will YOU spend eternity?</p>
               </div>
               
             </div>
