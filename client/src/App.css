@@ -16,6 +16,11 @@ body {
   background-color: #D9D8BA; /* Tana */
   color: black;
 }
+
+h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-family: 'PT Serif', serif;
+}
  
 /*
   ========================================
@@ -194,6 +199,10 @@ ul {
   height: 160px;
   width: 90%;
 }
+
+.tat-instructions {
+  margin-left: -20px;
+}
  
 /* .clearfix {
   overflow: auto;
@@ -213,7 +222,7 @@ ul {
   ========================================
 */
 
-.questionaire {
+.questionnaire {
   background-color: #5D5C61; /* Scarpa Flow */
   color: #FCFCF7; /* Ecru */
   text-align: left;
@@ -303,8 +312,18 @@ ul {
 }
 
 .descriptions {
+  display: flex;
+  position: relative;
+  max-width: 1000px;
+  background: #73D1DC; /* Viking */
+  margin: 8%;
+  margin-top: 0;
+  margin-bottom: 0;
+  border: 6px solid #5D5C61; /* Scarpa Flow */
   padding: 20px;
   text-align: left;
+  min-height: 500px;
+  overflow: auto; 
 }
 
 .inset {
@@ -315,6 +334,39 @@ ul {
 
 .text-box {
   min-height: 400px;
+  padding: 20px;
+  overflow: auto; 
+  /* text-overflow: ellipsis; */
+}
+
+.key {
+  display: flex;
+  position: relative;
+  max-width: 1000px;
+  min-height: 140px; 
+  background: #73D1DC; /* Viking */
+  margin: 8%;
+  margin-top: 0;
+  border: 6px solid #5D5C61; /* Scarpa Flow */
+  text-align: left;
+  padding: 0;
+  overflow: auto; 
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  background-color: #5D5C61; /* Scarpa Flow */
+  padding: 10px;
+  margin-bottom: 20px;
+}
+.grid-item {
+  background-color: #7395AE; /* Bermuda Grey */
+  color: white;
+  border: 1px solid #73D1DC; /* Viking */
+  padding: 10px;
+  font-size: 16px;
+  text-align: left;
 }
  
 /*

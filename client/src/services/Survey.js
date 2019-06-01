@@ -19,7 +19,7 @@ export const surveyQuestions = [
     options: generateYears()
   },
   {
-    question: 'In what kind of place did you spend your childhood?',
+    question: 'What was the setting of your childhood home?',
     options: [
       "Rural area/countryside",
       "Small town",
@@ -91,10 +91,10 @@ export const surveyQuestions = [
       'No']
   },
   {
-    question: 'At the current moment, I am neither high on illicit drugs, nor inebriated.',
+    question: 'Are you currently enebriated or high on illicit drugs?',
     options: [
-      'True', 
-      'False',
-      'Debatable']
+      'Yes', 
+      'No',
+      'Hard to tell']
   }
 ];

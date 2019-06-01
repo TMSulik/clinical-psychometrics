@@ -23,7 +23,7 @@ class Demographic extends React.Component {
       <div>
         {/* {this.renderQuestions()} */}
         <h1>PERSONAL INFORMATION</h1>
-        <div className="questionaire">
+        <div className="questionnaire">
           <ul>
             {this.renderQuestions()}
           </ul>

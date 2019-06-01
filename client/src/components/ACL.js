@@ -1,6 +1,6 @@
 import React from "react";
-import { adjectives } from '../services/ACL';
 import axios from 'axios';
+import { adjectives } from '../services/ACL';
 import { randomize } from '../services/Shuffle';
 import '../App.css';
 class ACL extends React.Component {
@@ -16,7 +16,7 @@ class ACL extends React.Component {
     this.setState({ acl: adjectives });
   }
 
-  constuctor() {
+  constuctor = () => {
     this.routeChange = this.routeChange.bind(this);
   }
 
@@ -26,8 +26,9 @@ class ACL extends React.Component {
   }
 
   onSelect = (event) => {
-    // event.preventDefault(); // You want to maintain all events (checked boxes)
-    // until you click the SUBMIT button 
+    // event.preventDefault(); 
+    // The app must maintain all events (checked boxes)
+    // until the user clicks the SUBMIT button 
 
     const checkedTrait = event.target.name;
     let traits = this.state.personalTraits;
