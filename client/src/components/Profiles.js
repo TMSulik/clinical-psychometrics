@@ -3,7 +3,7 @@ import '../App.css';
 import { modusOperandi, needScale, topicalScales, egogram, origenceIntellectance } from '../services/Scales';
 import { grid } from '../services/Chart';
 import { story } from '../services/TATresponse';
-import { tatKeys } from '../services/Key';
+import { tatKeys, modusOperandiKeys } from '../services/Key';
 // import { tallyScaleItem } from '../services/ProcessScale';
 class Profiles extends React.Component {
 
@@ -18,7 +18,8 @@ class Profiles extends React.Component {
     past: this.props.past,
     grid: grid,
     story: story,
-    tatKeys: tatKeys
+    tatKeys: tatKeys,
+    modusKeys: modusOperandiKeys
   };
 
   componentDidMount() {
@@ -97,7 +98,8 @@ class Profiles extends React.Component {
           caption: 'Assessment of individual approaches to self description',
           text: { height: '25%' },
           bar: { height: '25%' },
-          graph: { height: '100px'}
+          graph: { height: '100px'},
+          key: this.state.modusKeys
         };
       case needScale:
         return { 
@@ -105,7 +107,8 @@ class Profiles extends React.Component {
           caption: 'Assessment of psychological wants or needs',
           text: { height: '6.66%' },
           bar: { height: '6.66%' },
-          graph: { height: '400px'}
+          graph: { height: '400px'},
+          key: this.state.modusKeys
         };
       case origenceIntellectance:
         return { 
@@ -113,7 +116,8 @@ class Profiles extends React.Component {
           caption: 'Balance between affective versus rational tendencies',
           text: { height: '25%' },
           bar: { height: '24.3%' },
-          graph: { height: '100px'}
+          graph: { height: '100px'},
+          key: this.state.modusKeys
         };
       default:
         return  {
@@ -154,6 +158,12 @@ class Profiles extends React.Component {
             {this.renderBars(scale)}
           </div> 
         </div>
+        <h2>Key</h2>
+        <div className="key">
+          <ul>
+            {this.renderKeys(this.state.modusKeys)}
+          </ul>
+        </div>
       </div>
     );
   }
@@ -174,7 +184,7 @@ class Profiles extends React.Component {
   renderKeys = (keys) => {
     return keys.map(item => {
       return(
-        <li><b>{item.emphasis}</b>{item.plain}}</li>
+        <li><b>{item.emphasis}</b>{item.plain}</li>
       )
       });
   }
@@ -201,13 +211,13 @@ class Profiles extends React.Component {
               <div className="grid-container">
                 <div className="grid-item"></div>
                 <div className="grid-item"><b>Your data</b></div>
-                <div className="grid-item"><b>Male avg</b></div>
-                <div className="grid-item"><b>Female avg</b></div>
+                <div className="grid-item"><b>Male avg.</b></div>
+                <div className="grid-item"><b>Female avg.</b></div>
                 {this.renderGrid()}
               </div>
             </div>
           </div>
-          <h2>KEY</h2>
+          <h2>Key</h2>
           <div className="key">
           <ul>
             {this.renderKeys(this.state.tatKeys)}
@@ -216,6 +226,7 @@ class Profiles extends React.Component {
         </div>
         <h1>Personality Profiles</h1>
         {this.renderGraph(modus)}
+ 
         {this.renderGraph(needScale)}
         {this.renderGraph(welsh)}
       </div>

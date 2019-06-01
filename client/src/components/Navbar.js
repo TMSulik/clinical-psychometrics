@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 // import NavLink from "./NavLink";
-// import NavItem from "./NavLink";
 import '../App.css';
 // import { Login } from "./Login";
  
@@ -25,7 +24,7 @@ const Navbar = () => {
       <Link to="/home">HOME</Link>
       <Link to="/acl">ACL</Link>
       <Link to="/tat">TAT</Link>
-      <Link to="/demographic">DEMOGRAPHIC</Link>
+      <Link to="/demographic">BACKGROUND</Link>
       <Link to="/profiles">PROFILES</Link>
       <button className="btn-default login-btn">Login</button>
     </div>
@@ -33,4 +32,3 @@ const Navbar = () => {
 }
  
 export default Navbar;
-

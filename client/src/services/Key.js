@@ -1,35 +1,53 @@
 export const tatKeys = [
   {
-    emphasis: 'Percentages',
-    plain: ' reflect total words in the TAT description.'
+    emphasis: 'Percentages:',
+    plain: ' Reflect total relevant words in the TAT description.'
   },
   {
-    emphasis: 'Analytic',
-    plain: ' indicates logical or formal thinking.'
+    emphasis: 'Analytic:',
+    plain: ' Indicates logical or formal thinking.'
   },
   {
-    emphasis: 'Clout',
-    plain: ' indicates writing that is authoritative, confident, and exhibits leadership.'
+    emphasis: 'Clout:',
+    plain: ' Indicates writing that is authoritative, confident, and exhibits leadership.'
   },
   {
-    emphasis: 'Authenticity',
-    plain: ' indicates writing that is personal and honest.'
+    emphasis: 'Authenticity:',
+    plain: ' Indicates writing that is personal and honest.'
   },
   {
-    emphasis: 'Positive Emotions',
-    plain: ' indicates percentage of words with upbeat connotations.'
+    emphasis: 'Positive Emotions:',
+    plain: ' Indicates percentage of words with upbeat connotations.'
   },
   {
-    emphasis: 'Negative Emotions',
-    plain: ' indicates percentage of words with downbeat connotations.'
+    emphasis: 'Negative Emotions:',
+    plain: ' Indicates percentage of words with downbeat connotations.'
   },
 ];
 
+export const modusOperandiKeys = [
+  {
+    emphasis: 'Number Checked:',
+    plain: ' Percentage of adjectives checked.'
+  },
+  {
+    emphasis: 'Favorable:',
+    plain: ' The number of socially desirable adjectives checked.'
+  },
+  {
+    emphasis: 'Unfavorable:',
+    plain: ' The number of socially undesirable adjectives checked.'
+  },
+  {
+    emphasis: 'Communality:',
+    plain: ' Correspondence of responses to the pattern of checking typically found among people in general.'
+  }
+];
+
+
 /**
- * <li><b>Percentages</b> reflect total words in the TAT description.</li>
-            <li><b>Analytic</b> refers to logical or formal thinking.</li>
-            <li><b>Clout</b> indicates writing that is authoritative, confident, and exhibits leadership.</li>
-            <li><b>Authenticity</b> refers to writing that is personal and honest.</li>
-            <li><b>Positive emotions</b> indicates percentage of words with upbeat connotations.</li>
-            <li><b>Negative emotions</b> indicates percentage of words with downbeat connotations.</li>
+ Number Checked: percentage of adjectives checked.
+Favorable: The number of favorable (socially desirable) adjectives checked.
+Unfavorable: The number of unfavorable (socially undesirable) adjectives checked.
+Communality: Correspondence of responses to the pattern of checking typically found among people-in-general.
  */
