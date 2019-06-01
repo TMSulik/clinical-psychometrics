@@ -17,6 +17,16 @@ body {
   color: black;
 }
 
+/*
+  ========================================
+  Fonts
+  ========================================
+*/
+
+h1 {
+  font-family: 'Economica', sans-serif;
+}
+
 h2 {
   font-family: 'Cormorant Garamond', serif;
   font-family: 'PT Serif', serif;
@@ -28,10 +38,6 @@ h2 {
   ========================================
 */
  
-h1 {
-  font-family: 'Economica', sans-serif;
-}
-
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 10vmin;
@@ -204,17 +210,11 @@ ul {
   margin-left: -20px;
 }
  
-/* .clearfix {
-  overflow: auto;
-} */
-
 .clearfix::after {
   content: "";
   clear: both;
   display: table;
 }
-
-
 
 /*
   ========================================
@@ -348,6 +348,7 @@ ul {
   background: #73D1DC; /* Viking */
   margin: 8%;
   margin-top: 0;
+  margin-bottom: 10px;
   border: 6px solid #5D5C61; /* Scarpa Flow */
   text-align: left;
   padding: 0;
@@ -361,6 +362,11 @@ ul {
   padding: 10px;
   margin-bottom: 20px;
 }
+
+/* hr {
+  background: red;
+  width: 3px;
+} */
 
 .grid-item {
   background-color: #7395AE; /* Bermuda Grey */

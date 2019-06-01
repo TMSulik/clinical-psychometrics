@@ -3,7 +3,7 @@ import '../App.css';
 import { modusOperandi, needScale, topicalScales, egogram, origenceIntellectance } from '../services/Scales';
 import { grid } from '../services/Chart';
 import { story } from '../services/TATresponse';
-import { tatKeys, modusOperandiKeys } from '../services/Key';
+import { tatKeys, modusOperandiKeys, needScaleKeys, origenceIntellectanceKeys, transactionalAnalysisKeys } from '../services/Key';
 // import { tallyScaleItem } from '../services/ProcessScale';
 class Profiles extends React.Component {
 
@@ -15,11 +15,13 @@ class Profiles extends React.Component {
     origenceIntellectance: [],
     personalTraits: this.props.traits,
     percent: 1.0,
-    past: this.props.past,
     grid: grid,
     story: story,
     tatKeys: tatKeys,
-    modusKeys: modusOperandiKeys
+    modusKeys: modusOperandiKeys,
+    needKeys: needScaleKeys,
+    welshKeys: origenceIntellectanceKeys,
+    transKeys: transactionalAnalysisKeys
   };
 
   componentDidMount() {
@@ -108,7 +110,7 @@ class Profiles extends React.Component {
           text: { height: '6.66%' },
           bar: { height: '6.66%' },
           graph: { height: '400px'},
-          key: this.state.modusKeys
+          key: this.state.needKeys
         };
       case origenceIntellectance:
         return { 
@@ -117,12 +119,18 @@ class Profiles extends React.Component {
           text: { height: '25%' },
           bar: { height: '24.3%' },
           graph: { height: '100px'},
-          key: this.state.modusKeys
+          key: this.state.welshKeys
+        };
+      case grid:
+        return { 
+          key: this.state.tatKeys
         };
       default:
         return  {
-          text: { height: '25%' },
-          bar: { height: '25%' } 
+          graph: { height: '140px'},
+          text: { height: '20%' },
+          bar: { height: '20%' },
+          key: this.state.transKeys
         };
     }
 
@@ -143,7 +151,7 @@ class Profiles extends React.Component {
     )
   }
 
-  renderGraph(scale) {
+  renderGraph = (scale) => {
     const graphHeight = this.setBarHeight(scale).graph;
     const heading = this.setBarHeight(scale).heading;
     const caption = this.setBarHeight(scale).caption;
@@ -161,7 +169,7 @@ class Profiles extends React.Component {
         <h2>Key</h2>
         <div className="key">
           <ul>
-            {this.renderKeys(this.state.modusKeys)}
+            {this.renderKeys(scale)}
           </ul>
         </div>
       </div>
@@ -181,12 +189,17 @@ class Profiles extends React.Component {
     });
   }
 
-  renderKeys = (keys) => {
+  renderKeys = (scale) => {
+    console.log("SCALE: ", scale);
+    let keys = this.setBarHeight(scale).key;
+    if(keys === []) {
+      keys = this.state.tatKeys;
+    }
     return keys.map(item => {
       return(
         <li><b>{item.emphasis}</b>{item.plain}</li>
       )
-      });
+    });
   }
 
   render() {
@@ -206,7 +219,7 @@ class Profiles extends React.Component {
                 {/* {this.state.story.replace(/\n/g, <br/>)} */}
                 {this.state.story}
               </div>
-              <hr></hr>
+              <hr/>
               <h3>Analysis</h3>
               <div className="grid-container">
                 <div className="grid-item"></div>
@@ -220,14 +233,14 @@ class Profiles extends React.Component {
           <h2>Key</h2>
           <div className="key">
           <ul>
-            {this.renderKeys(this.state.tatKeys)}
+            {this.renderKeys(grid)}
           </ul>
           </div>
         </div>
         <h1>Personality Profiles</h1>
         {this.renderGraph(modus)}
- 
         {this.renderGraph(needScale)}
+        {this.renderGraph(egogram)}
         {this.renderGraph(welsh)}
       </div>
     );

@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const db = require("../models");
+
 // Is this supposed to go here?
 const AYLIENTextAPI = require('aylien_textapi');
 const textapi = new AYLIENTextAPI({
@@ -9,10 +10,12 @@ const textapi = new AYLIENTextAPI({
 });
 
 module.exports = app => {
+
   app.post('/api/traits/', (req, res) => {
     const traits = req.body;
     res.send(traits);
   });
+
   // Get the text from the TAT description
   // Use Aylien API to analyze positive and negative sentiments
   app.post('/api/tat/', (req, res) => {
@@ -27,9 +30,6 @@ module.exports = app => {
       }
     });
   });
-
-
-
 
 };
 

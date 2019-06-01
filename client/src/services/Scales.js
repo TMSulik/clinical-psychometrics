@@ -750,7 +750,7 @@ export const topicalScales = [
 
 export const egogram = [
   {
-    trait: 'Critical',
+    trait: 'Critical Parent',
     indicative: [
       "aggressive",
       "ambitious",
@@ -788,33 +788,228 @@ export const egogram = [
       "suspicious", 
       "tense"
     ],
-    contraindicative: []
+    contraindicative: [
+      "calm",
+      "easy going",
+      "forgiving",
+      "kind",
+      "mild",
+      "relaxed",
+      "soft-hearted",
+      "tolerant",
+      "trusting"
+    ]
   },
   {
-    trait: 'Nurturing',
-    indicative: [],
-    contraindicative: []
+    trait: 'Nurturing Parent',
+    indicative: [
+      "active",
+      "appreciative",
+      "cheerful", 
+      "clear-thinking",  
+      "efficient",
+      "forgiving", 
+      "friendly", 
+      "helpful", 
+      "kind", 
+      "mature", 
+      "patient",  
+      "pleasant", 
+      "rational", 
+      "responsible", 
+      "sociable", 
+      "soft-hearted", 
+      "steady", 
+      "sympathetic",  
+      "thoughtful", 
+      "tolerant", 
+      "understanding", 
+      "unselfish"
+    ],
+    contraindicative: [
+      "absent-minded",
+      "artistic",
+      "careless",
+      "defensive",
+      "dissatisfied",
+      "dreamy",
+      "fault-finding",
+      "forgetful",
+      "headstrong",
+      "high-strung",
+      "impatient",
+      "impulsive",
+      "inhibited",
+      "lazy",
+      "nervous",
+      "restless",
+      "sarcastic",
+      "self-centered",
+      "self-punishing",
+      "self-seeking",
+      "suspicious",
+      "unconventional"
+    ]
   },
   {
     trait: 'Adult',
-    indicative: [],
-    contraindicative: []
+    indicative: [
+    
+      "alert", 
+      "confident", 
+      "conscientious", 
+      "considerate",  
+      "enterprising",  
+      "fair-minded",  
+      "independent", 
+      "industrious",  
+      "intelligent", 
+      "logical", 
+      "mature", 
+      "methodical",  
+      "persevering", 
+      "practical",
+      "reflective",  
+      "reliable",  
+      "responsible", 
+      "serious",  
+      "steady", 
+      "thorough", 
+      "thrifty"
+    ],
+    contraindicative: [
+      "absent-minded",  
+      "complaining", 
+      "confused",    
+      "defensive", 
+      "disorderly", 
+      "dreamy ", 
+      "emotional", 
+      "excitable", 
+      "flirtatious", 
+      "hasty", 
+      "hurried", 
+      "impatient", 
+      "moody", 
+      "nervous", 
+      "peculiar", 
+      "pleasure-seeking", 
+      "prejudiced",  
+      "restless", 
+      "self-punishing", 
+      "suspicious", 
+      "tense",
+      "zany"
+    ]
   },
   {
-    trait: 'Free',
-    indicative: [],
-    contraindicative: []
+    trait: 'Free Child',
+    indicative: [
+      "adventurous",
+    
+      "cheerful", 
+      "clever", 
+      "energetic", 
+      "enthusiastic", 
+      "headstrong",  
+      "humorous",
+      "imaginative",  
+      "impulsive", 
+      "initiative", 
+      "inventive",
+      "mischievous",  
+      "optimistic", 
+      "outgoing", 
+      "outspoken", 
+      "sexy",  
+      "sociable", 
+      "spontaneous", 
+      "spunky", 
+      "talkative",  
+      "uninhibited", 
+      "zany"
+    ],
+    contraindicative: [
+      "apathetic", 
+      "cautious",  
+      "complaining",
+      "conservative", 
+      "conventional",
+      "irritable", 
+      "mannerly", 
+      "mild",  
+      "moderate", 
+      "modest",
+      "nervous", 
+      "pessimistic", 
+      "planful", 
+      "quiet",  
+      "reserved",  
+      "self-denying", 
+      "self-pitying",
+      "shy", 
+      "silent", 
+      "timid",  
+      "touchy",  
+      "withdrawn"
+    ]
   },
   {
-    trait: "Adapted",
-    indicative: [],
-    contraindicative: []
+    trait: "Adapted Child",
+    indicative: [
+      "anxious",
+      "awkward",
+      "careless",
+      "dependent", 
+      "distractable", 
+      "fault-finding", 
+      "fearful", 
+      "forgetful", 
+      "high-strung",
+      "hurried", 
+      "inhibited", 
+      "lazy", 
+      "moody", 
+      "preoccupied", 
+      "self-denying", 
+      "self-pitying", 
+      "self-seeking", 
+      "selfish", 
+      "submissive", 
+      "temperamental",
+      "touchy", 
+      "worrying"
+    ],
+    contraindicative: [
+      "adaptable",
+      "alert",
+      "assertive",
+      "calm",  
+      "clear-thinking", 
+      "confident", 
+      "deliberate", 
+      "efficient", 
+      "fair-minded", 
+      "initiative", 
+      "loyal",  
+      "optimistic", 
+      "organized", 
+      "patient", 
+      "practical",
+      "rational", 
+      "realistic", 
+      "self-confident", 
+      "stable", 
+      "strong",  
+      "thrifty", 
+      "tough"
+    ]
   }
 ];
 
 export const origenceIntellectance = [
   {
-    trait: 'Creative',
+    trait: 'A-1', // Creative
     indicative: [
       "adventurous",
       "artistic",
@@ -844,7 +1039,7 @@ export const origenceIntellectance = [
     contraindicative: []
   },
   {
-    trait: 'Intellectual',
+    trait: 'A-2', // Intellectual
     indicative: [
       "aloof",
       "complicated", 
@@ -875,7 +1070,7 @@ export const origenceIntellectance = [
     contraindicative: []
   },
   {
-    trait: 'Practical',
+    trait: 'B-1', // Practical
     indicative: [
       "appreciative",
       "cheerful", 
@@ -898,7 +1093,7 @@ export const origenceIntellectance = [
     contraindicative: []
   },
   {
-    trait: 'Scientific',
+    trait: 'B-2', // Scientific
     indicative: [
       "alert",
       "assertive",
