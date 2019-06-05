@@ -14,24 +14,24 @@ class ACL extends React.Component {
     console.log("ACL props: ", this.props);
     randomize(adjectives);
     this.setState({ acl: adjectives });
-  }
+  };
 
-  constuctor = () => {
-    this.routeChange = this.routeChange.bind(this);
-  }
+  // constuctor = () => {
+  //   this.routeChange = this.routeChange.bind(this);
+  // };
 
   routeChange = () => {
     const path="/profiles";
     this.props.history.push(path);
-  }
+  };
 
   onSelect = (event) => {
-    // event.preventDefault(); 
+    // Don't use event.preventDefault() here.
     // The app must maintain all events (checked boxes)
-    // until the user clicks the SUBMIT button 
+    // until the user clicks the SUBMIT button. 
 
     const checkedTrait = event.target.name;
-    let traits = this.state.personalTraits;
+    const traits = this.state.personalTraits;
 
     if(event.target.checked && !traits.includes(checkedTrait)) {
       traits.push(checkedTrait);

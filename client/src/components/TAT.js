@@ -13,7 +13,8 @@ class TAT extends React.Component {
     formValues: {},
     prompts: prompts,
     pictures: tats,
-    picture: tats[0]
+    picture: tats[0],
+    story: "Hello from the Tragic Cavern!"
   };
 
   componentDidMount = () => {
@@ -34,10 +35,14 @@ class TAT extends React.Component {
     formValues[name] = value;
 
     this.setState({formValues})
+    this.setState({story: value});
+
+    // console.log("VALUE: ", this.state.story);
   }
 
   handleSubmit(event) {
-    console.log('A form was submitted: ' + JSON.stringify(this.state.formValues));
+    // console.log('A form was submitted: ' + JSON.stringify(this.state.formValues));
+    console.log('A form was submitted: ' + event);
     event.preventDefault();
   }
 
@@ -46,6 +51,12 @@ class TAT extends React.Component {
     this.props.history.push(path);
   }
 
+  save = async () => {
+    const tats = await axios.post(`/api/tats`, this.state.story);
+    this.props.onSubmit(tats.data);
+    this.routeChange();
+  };
+
   selectPicture = () => {
     const picture = this.state.picture;
     return(
@@ -53,27 +64,27 @@ class TAT extends React.Component {
     );
   }
 
-  save = () => {
-    this.routeChange();
-    // this.props.onSubmit(this.state.personalTraits);
-  }
+  // save = () => {
+  //   this.routeChange();
+  //   // this.props.onSubmit(this.state.personalTraits);
+  // }
 
-  renderPrompts = () => {
-    return this.state.prompts.map((prompt, index) => {
-      return(
-        <div key={index}> 
-          <h4>{prompt.question}</h4>
-          <textarea 
-            type="text" 
-            className="text-field"
-            name={prompt.name}
-            value={this.state.value} 
-            onChange={this.handleChange} 
-          />
-        </div> 
-      )    
-    });
-  }
+  // renderPrompts = () => {
+  //   return this.state.prompts.map((prompt, index) => {
+  //     return(
+  //       <div key={index}> 
+  //         <h4>{prompt.question}</h4>
+  //         <textarea 
+  //           type="text" 
+  //           className="text-field"
+  //           name={prompt.name}
+  //           value={this.state.value} 
+  //           onChange={this.handleChange} 
+  //         />
+  //       </div> 
+  //     )    
+  //   });
+  // }
 
   renderPrompt = () => {
     return (

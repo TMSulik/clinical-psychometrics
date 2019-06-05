@@ -204,6 +204,7 @@ ul {
   color: #FCFCF7; /* Ecru */
   height: 160px;
   width: 90%;
+  font-size: 1em;
 }
 
 .tat-instructions {
@@ -308,7 +309,6 @@ ul {
 }
  
 .text {
-  /* height: 6.66%; */
   height: 25%;
 }
 
@@ -362,11 +362,6 @@ ul {
   padding: 10px;
   margin-bottom: 20px;
 }
-
-/* hr {
-  background: red;
-  width: 3px;
-} */
 
 .grid-item {
   background-color: #7395AE; /* Bermuda Grey */

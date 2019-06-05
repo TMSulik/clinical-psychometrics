@@ -5,28 +5,44 @@ const db = require("../models");
 // Is this supposed to go here?
 const AYLIENTextAPI = require('aylien_textapi');
 const textapi = new AYLIENTextAPI({
-  application_id: "1409618431272",
+  application_id: "a57f3ef6",
   application_key: "0e578f4cb6aeabd1e07ab094edc9ac0d"
 });
+
+// const unirest = require('unirest');
+
+// unirest.post(API_URL)
+//   .header("X-RapidAPI-Key", API_KEY)
+//   .end(function (result) {
+//     console.log(result.status, result.headers, result.body);
+//   });
 
 module.exports = app => {
 
   app.post('/api/traits/', (req, res) => {
     const traits = req.body;
+    console.log("ACL text: ", traits);
     res.send(traits);
   });
 
   // Get the text from the TAT description
   // Use Aylien API to analyze positive and negative sentiments
-  app.post('/api/tat/', (req, res) => {
-    const text = req.body;
-    console.log("TAT text: ", text);
-    textapi.sentiment({
+  app.post('/api/tats/', (req, res) => {
+    const text = Object.keys(req.body)[0];
+    //console.log("TAT text: ", text);
+    //console.log("API: ", textapi);
+    textapi.entityLevelSentiment({
+    // textapi.sentiment({
       'text': text
     }, function(error, res) {
       if (error === null) {
-        console.log(res);
-        res.send(res);
+        console.log("RES entities: ", res.entities);
+        // console.log("RES sentiment: ", res);
+        // console.log("Mentions: ", res.entities[7].mentions);
+        // console.log("Sentiment: ", res.entities[7].overall_sentiment);
+        // console.log("Type: ", res.entities[7].type);
+
+        // res.send(res);
       }
     });
   });

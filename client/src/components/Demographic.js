@@ -8,6 +8,17 @@ class Demographic extends React.Component {
   state = {
     surveyQuestions: surveyQuestions
   }
+
+  routeChange = () => {
+    const path="/profiles";
+    this.props.history.push(path);
+  }
+ 
+  save = () => {
+    this.routeChange();
+    // this.props.onSubmit(this.state.personalTraits);
+  }
+
   renderQuestions = () => {
     return this.state.surveyQuestions.map((question, index) => {
       return(
@@ -18,6 +29,7 @@ class Demographic extends React.Component {
       )    
     });
   }
+
   render() {
     return (      
       <div>

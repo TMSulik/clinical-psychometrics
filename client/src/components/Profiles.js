@@ -2,7 +2,7 @@ import React from "react";
 import '../App.css';
 import { modusOperandi, needScale, topicalScales, egogram, origenceIntellectance } from '../services/Scales';
 import { grid } from '../services/Chart';
-import { story } from '../services/TATresponse';
+import { responses } from '../services/TATresponse';
 import { tatKeys, modusOperandiKeys, needScaleKeys, origenceIntellectanceKeys, transactionalAnalysisKeys } from '../services/Key';
 // import { tallyScaleItem } from '../services/ProcessScale';
 class Profiles extends React.Component {
@@ -16,7 +16,7 @@ class Profiles extends React.Component {
     personalTraits: this.props.traits,
     percent: 1.0,
     grid: grid,
-    story: story,
+    responses: responses,
     tatKeys: tatKeys,
     modusKeys: modusOperandiKeys,
     needKeys: needScaleKeys,
@@ -105,7 +105,7 @@ class Profiles extends React.Component {
         };
       case needScale:
         return { 
-          heading: 'Need Scale',
+          heading: 'Needs Scale',
           caption: 'Assessment of psychological wants or needs',
           text: { height: '6.66%' },
           bar: { height: '6.66%' },
@@ -127,6 +127,7 @@ class Profiles extends React.Component {
         };
       default:
         return  {
+          heading: 'Transactional Analysis Scale',
           graph: { height: '140px'},
           text: { height: '20%' },
           bar: { height: '20%' },
@@ -176,15 +177,15 @@ class Profiles extends React.Component {
     );
   }
 
-  renderGrid = () => {
-    return this.state.grid.map((row, index) => {
+  renderGrid = (textAnalysis) => {
+    return textAnalysis.map((row, index) => {
       return(
-        <>
-          <div key={index} className="grid-item"><b>{row.category}</b></div>
-          <div className="grid-item">{row.percentages[0]}%</div>
-          <div className="grid-item">{row.percentages[1]}%</div>
-          <div className="grid-item">{row.percentages[2]}%</div>
-        </> 
+        <React.Fragment>
+          <div key={index} className="grid-item"><b>{row.entity}</b></div>
+          <div className="grid-item"> {row.overall_sentiment.confidence}% {row.overall_sentiment.polarity}</div>
+          <div className="grid-item">{row.type}</div>
+          <div className="grid-item">{row.mentions}</div>
+        </React.Fragment> 
       )    
     });
   }
@@ -202,6 +203,41 @@ class Profiles extends React.Component {
     });
   }
 
+  renderTATResponses = () => {
+    const responses = this.state.responses;
+    // responses = [];
+    // if(responses === []) {
+    //   return (
+    //     <h2>Take a Thematic Apperception Test then view results here</h2>
+    //   )
+    // }
+    return responses.map((response, index) => {
+      return(
+        <div key={index} className="graph-wrapper">
+          <h2 className="graph-header">PICTURE {response.pictureNumber}</h2>
+          <div className="descriptions">
+            <div className="clearfix">
+              <img src={require(`../images/tat-${response.pictureNumber}.jpg`)} alt="apperception" className="inset" />
+              <div>
+                <h3>Response</h3>             
+                {response.response}
+              </div>
+              <hr/>
+              <h3>Analysis</h3>
+              <div className="grid-container">
+                <div className="grid-item"><b>Entity</b></div>
+                <div className="grid-item"><b>Sentiment</b></div>
+                <div className="grid-item"><b>Type</b></div>
+                <div className="grid-item"><b>Mentioned</b></div>
+                {this.renderGrid(response.analysis)}
+              </div>
+            </div>
+          </div> 
+        </div> 
+      )    
+    });    
+  }
+
   render() {
     const modus = this.state.modusOperandi;
     const needScale = this.state.needScale;
@@ -210,31 +246,13 @@ class Profiles extends React.Component {
       <div>
         <h1>TAT Responses</h1>
         <div className="graph-wrapper">
-        <h2 className="graph-header">Picture 31</h2>
-          <div className="descriptions">
-            <div className="clearfix">
-              <img src={require(`../images/tat-14.jpg`)} alt="apperception" className="inset" />
-              <div>
-                <h3>Response</h3>
-                {/* {this.state.story.replace(/\n/g, <br/>)} */}
-                {this.state.story}
-              </div>
-              <hr/>
-              <h3>Analysis</h3>
-              <div className="grid-container">
-                <div className="grid-item"></div>
-                <div className="grid-item"><b>Your data</b></div>
-                <div className="grid-item"><b>Male avg.</b></div>
-                <div className="grid-item"><b>Female avg.</b></div>
-                {this.renderGrid()}
-              </div>
-            </div>
-          </div>
+          {/* <h2>View results of your Thematic Apperception Tests here</h2>  */}
+          {this.renderTATResponses()}
           <h2>Key</h2>
           <div className="key">
-          <ul>
-            {this.renderKeys(grid)}
-          </ul>
+            <ul>
+              {this.renderKeys(grid)}
+            </ul>
           </div>
         </div>
         <h1>Personality Profiles</h1>
@@ -249,3 +267,20 @@ class Profiles extends React.Component {
 }
 
 export default Profiles;
+
+/**
+Character: person mentioned in the response to the TAT.
+Sentiment: positive, negative, or ambivalent feelings associated with a person discussed.
+Positive sentiment: good feelings such as joy or warmth.
+Negative sentiment: bad feelings such as anger or fear.
+Ambivalent sentiment: conflicting or oscilating feelings. 
+
+
+Valence, as used in psychology, especially in discussing emotions, means the intrinsic attractiveness/"good"-ness (positive valence) or averseness/"bad"-ness (negative valence) of an event, object, or situation.[1] The term also characterizes and categorizes specific emotions. For example, emotions popularly referred to as "negative", such as anger and fear, have negative valence. Joy has positive valence. Positively valenced emotions are evoked by positively valenced events, objects, or situations. The term is also used to describe the hedonic tone of feelings, affect, certain behaviors (for example, approach and avoidance), goal attainment or nonattainment, and conformity with or violation of norms. Ambivalence can be viewed as conflict between positive and negative valence-carriers.
+
+
+
+
+ */
+
+ /* {this.state.story.replace(/\n/g, <br/>)} */

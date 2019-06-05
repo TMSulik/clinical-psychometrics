@@ -5,12 +5,7 @@ const UserSchema = new Schema({
   name: String,
   password: String,
   selfDescriptors: [String],
-  themes: {
-    past: String,
-    present: String,
-    future: String,
-    feelings: String
-  }
+  story: String
 });
 
 const User = mongoose.model("Personality", UserSchema);
