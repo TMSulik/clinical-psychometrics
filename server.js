@@ -6,7 +6,7 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser"); 
 
 // process.env.PORT lets the port be set by Heroku
-const PORT = process.env.PORT || process.argv[2] || 8080;
+const PORT = process.env.PORT || 8080;
 
 // const db = require("./models");
 
@@ -22,11 +22,12 @@ require("./routes/api")(app);
 // app.use(router);
 
 // Connect to the Mongo DB (shouldn't be mongoHeadlines?)
-const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
+const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost:27017/psychometrics";
 
 // Connect to the Mongo DB
 mongoose.Promise = Promise;
-mongoose.connect(MONGODB_URI);
+mongoose.connect(MONGODB_URI)
+  .then(()=>console.log("Mongo Connected")).catch(err => console.error(err));
 
 // Start the server
 app.listen(PORT, function () {
