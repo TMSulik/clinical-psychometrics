@@ -26,7 +26,7 @@ const Navbar = () => {
       <Link to="/tat">TAT</Link>
       <Link to="/demographic">BACKGROUND</Link>
       <Link to="/profiles">PROFILES</Link>
-      <button className="btn-default login-btn">Login</button>
+      {/* <button className="btn-default login-btn">Login</button> */}
     </div>
   );
 }

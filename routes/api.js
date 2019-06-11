@@ -9,8 +9,6 @@ const textapi = new AYLIENTextAPI({
   application_key: "0e578f4cb6aeabd1e07ab094edc9ac0d"
 });
 
-
-
 // const unirest = require('unirest');
 
 // unirest.post(API_URL)
@@ -21,8 +19,6 @@ const textapi = new AYLIENTextAPI({
 
 module.exports = app => {
 
-
-
   app.post('/api/traits/', (req, res) => {
     const traits = req.body;
     console.log("ACL text: ", traits);
@@ -32,33 +28,51 @@ module.exports = app => {
   // Get the text from the TAT description
   // Use Aylien API to analyze positive and negative sentiments
   app.post('/api/tats/', (req, res) => {
-
-
-    console.log("REQ BODY: ", req.body);
-    console.log("TEXT: ", Object.keys(req.body)[0]);
-    const text = Object.keys(req.body)[0];
-    //console.log("TAT text: ", text);
-    //console.log("API: ", textapi);
+    const text = req.body.story;
+    const pic = req.body.picture;
+    let entity = [];
+    
     textapi.entityLevelSentiment({
-    // textapi.sentiment({
-      'text': text
+      text: text
     }, function(error, res) {
       if (error === null) {
         console.log("RES entities: ", res.entities);
-        // console.log("RES sentiment: ", res);
-        console.log("Entity: ", res.entities[0].mentions[0].text);
-        // console.log("Sentiment: ", res.entities[7].overall_sentiment);
-        // console.log("Type: ", res.entities[7].type);
-
-        // res.send(res);
+        entity = res.entities;
       }
+      db.Responses.create({picture: pic, story: text, analysis: entity})
+        .then((dbResponse)=> {
+          console.log("DBRESPONSE-a: ", dbResponse.story);
+          console.log("DBRESPONSE-b: ", dbResponse.picture);
+        });
     });
-    db.Responses.create({story: text})
-      .then((dbResponse)=> {
-        console.log("DBRESPONSE: ", dbResponse);
-      });
-      // Unit 18 Activity 19 populate exercise
+
+    // Unit 18 Activity 19 populate exercise
   });
+
+  app.get("/api/responses/", function(req, res) {
+    db.Responses.find({})
+      .then(function(dbResponses) {
+        res.json(dbResponses);
+      })
+      .catch(function (err) {
+        res.json(err);
+      });
+  });
+
+
+  // app.get("/api/stories", (req, res) => {
+  //   db.User.find({})
+  //     .then(function (dbStories) {
+  //       let hbsObject;
+  //       hbsObject = {
+  //         stories: dbStories
+  //       };
+  //       res.render("stories", hbsObject);
+  //     })
+  //     .catch(function (err) {
+  //       res.json(err);
+  //     });
+  // });
 
 };
 

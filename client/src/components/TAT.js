@@ -27,7 +27,6 @@ class TAT extends React.Component {
   handleSubmit = this.handleSubmit.bind(this);
 
   handleChange(event) {
-    //this.setState({value: event.target.value});
     let formValues = this.state.formValues;
     let name = event.target.name; // Field name
     let value = event.target.value; // Field value
@@ -36,13 +35,10 @@ class TAT extends React.Component {
 
     this.setState({formValues})
     this.setState({story: value});
-
-    // console.log("VALUE: ", this.state.story);
   }
 
   handleSubmit(event) {
-    // console.log('A form was submitted: ' + JSON.stringify(this.state.formValues));
-    console.log('A form was submitted: ' + event);
+    console.log('A form was submitted: ' + (event));
     event.preventDefault();
   }
 
@@ -51,10 +47,16 @@ class TAT extends React.Component {
     this.props.history.push(path);
   }
 
-  save = async () => {
-    const tats = await axios.post(`/api/tats`, this.state.story);
-    this.props.onSubmit(tats.data);
+  save = () => {
+    const pic = this.state.picture;
+    const story = this.state.story;
+    // const tats = await axios.post(`/api/tats`, {picture: pic, story: story});
+    // this.props.onSubmit(tats.data);
+    // this.routeChange();
+    const tats = axios.post(`/api/tats`, {picture: pic, story: story});       
+    // this.props.onSubmit(tats.data);
     this.routeChange();
+ 
   };
 
   selectPicture = () => {
@@ -63,28 +65,6 @@ class TAT extends React.Component {
       <img src={require(`../images/${picture}`)} alt={picture} className="tat-image" />
     );
   }
-
-  // save = () => {
-  //   this.routeChange();
-  //   // this.props.onSubmit(this.state.personalTraits);
-  // }
-
-  // renderPrompts = () => {
-  //   return this.state.prompts.map((prompt, index) => {
-  //     return(
-  //       <div key={index}> 
-  //         <h4>{prompt.question}</h4>
-  //         <textarea 
-  //           type="text" 
-  //           className="text-field"
-  //           name={prompt.name}
-  //           value={this.state.value} 
-  //           onChange={this.handleChange} 
-  //         />
-  //       </div> 
-  //     )    
-  //   });
-  // }
 
   renderPrompt = () => {
     return (
@@ -112,8 +92,6 @@ class TAT extends React.Component {
     );
   }
 
-
-
 // Please write continuously for the full 10 minutes.
 // Press the "Finish" button when you're done.
 
@@ -130,8 +108,7 @@ class TAT extends React.Component {
             <button className="btn btn-default tat-submit" onClick={this.save}>Submit</button>
           </div>
           </form>
-        </div>
-        
+        </div>     
       </div>
     );
   }

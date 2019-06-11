@@ -2,8 +2,9 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const ResponsesSchema = new Schema({
-
-  story: String
+  picture: String, 
+  story: String,
+  analysis: []
   // acl: [String],
   // tat: {
   //   pictureNumber: Number,

@@ -21,7 +21,7 @@ app.use(express.static("public"));
 require("./routes/api")(app);
 // app.use(router);
 
-// Connect to the Mongo DB (shouldn't be mongoHeadlines?)
+// Connect to the Mongo DB 
 const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost:27017/psychometrics";
 
 // Connect to the Mongo DB

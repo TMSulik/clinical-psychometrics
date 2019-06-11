@@ -2,9 +2,10 @@ import React from "react";
 import '../App.css';
 import { modusOperandi, needScale, topicalScales, egogram, origenceIntellectance } from '../services/Scales';
 import { grid } from '../services/Chart';
-import { responses } from '../services/TATresponse';
+import { personalInfo } from '../services/Survey';
 import { tatKeys, modusOperandiKeys, needScaleKeys, origenceIntellectanceKeys, transactionalAnalysisKeys } from '../services/Key';
 // import { tallyScaleItem } from '../services/ProcessScale';
+import Axios from 'axios';
 class Profiles extends React.Component {
 
   state = { 
@@ -16,16 +17,21 @@ class Profiles extends React.Component {
     personalTraits: this.props.traits,
     percent: 1.0,
     grid: grid,
-    responses: responses,
+    responses: [],
     tatKeys: tatKeys,
     modusKeys: modusOperandiKeys,
     needKeys: needScaleKeys,
     welshKeys: origenceIntellectanceKeys,
-    transKeys: transactionalAnalysisKeys
+    transKeys: transactionalAnalysisKeys,
+    personal: personalInfo
   };
 
-  componentDidMount() {
+  async componentDidMount() {
+    const response = await Axios.get('/api/responses');
+    const tatData = this.processTATData(response.data);
+ 
     this.setState({
+      responses: tatData,
       modusOperandi: modusOperandi, 
       needScale: needScale,
       topicalScales: topicalScales,
@@ -33,6 +39,7 @@ class Profiles extends React.Component {
       origenceIntellectance: origenceIntellectance
     });
     console.log("TRAITS in Profiles: ", this.state.personalTraits);
+
   }
 
   tallyScaleItem = (item) => {
@@ -51,6 +58,30 @@ class Profiles extends React.Component {
     // Otherwise, return the proportion of indicative to contraindicative
     return result - contra + indic;
   }
+
+  getPictureNumber = (str) => {
+    let result = str;
+    result = str.replace('tat-', '')
+    return result.replace('.jpg', '');
+  }
+
+  processPictureAnalysis = (arr) => {
+
+  }
+
+  processTATData = (arr) => {
+    let responses = [];
+    
+    for(let i = 0; i < arr.length; i++) {
+      let object = {};
+      object.story = arr[i].story;
+      object.pictureNumber = this.getPictureNumber(arr[i].picture);
+      object.analysis = arr[i].analysis;
+      responses.push(object);
+    }
+    console.log("RESPONSES: ", responses);
+    return responses;
+  };
 
   renderLines() {
     const Line = ({left}) => {
@@ -128,7 +159,8 @@ class Profiles extends React.Component {
       default:
         return  {
           heading: 'Transactional Analysis Scale',
-          graph: { height: '140px'},
+          caption: 'Assessment of the ego state (childlike or adult) in approaching emotional problems',
+          graph: { height: '138px'},
           text: { height: '20%' },
           bar: { height: '20%' },
           key: this.state.transKeys
@@ -180,18 +212,25 @@ class Profiles extends React.Component {
   renderGrid = (textAnalysis) => {
     return textAnalysis.map((row, index) => {
       return(
+        // If I use a regular <div> here (with key={index}), the columns 
+        // and rows in the table are messed up.
+        // "Each child should have a unique key prop" warning.
         <React.Fragment>
-          <div key={index} className="grid-item"><b>{row.entity}</b></div>
-          <div className="grid-item"> {row.overall_sentiment.confidence}% {row.overall_sentiment.polarity}</div>
+       
+          <div className="grid-item"><b>{row.mentions[0].text}</b></div>
+          
+          <div className="grid-item"> {Math.floor(row.overall_sentiment.confidence*100)}% {row.overall_sentiment.polarity}</div>
           <div className="grid-item">{row.type}</div>
-          <div className="grid-item">{row.mentions}</div>
+          <div className="grid-item center">{row.mentions.length}</div>
+        
+      
         </React.Fragment> 
       )    
     });
   }
 
   renderKeys = (scale) => {
-    console.log("SCALE: ", scale);
+    // console.log("SCALE: ", scale);
     let keys = this.setBarHeight(scale).key;
     if(keys === []) {
       keys = this.state.tatKeys;
@@ -203,42 +242,47 @@ class Profiles extends React.Component {
     });
   }
 
-  renderTATResponses = () => {
-    const responses = this.state.responses;
-    // responses = [];
-    // if(responses === []) {
-    //   return (
-    //     <h2>Take a Thematic Apperception Test then view results here</h2>
-    //   )
-    // }
-    return responses.map((response, index) => {
-      return(
-        <div key={index} className="graph-wrapper">
-          <h2 className="graph-header">PICTURE {response.pictureNumber}</h2>
-          <div className="descriptions">
-            <div className="clearfix">
-              <img src={require(`../images/tat-${response.pictureNumber}.jpg`)} alt="apperception" className="inset" />
-              <div>
-                <h3>Response</h3>             
-                {response.response}
-              </div>
-              <hr/>
-              <h3>Analysis</h3>
-              <div className="grid-container">
-                <div className="grid-item"><b>Entity</b></div>
-                <div className="grid-item"><b>Sentiment</b></div>
-                <div className="grid-item"><b>Type</b></div>
-                <div className="grid-item"><b>Mentioned</b></div>
-                {this.renderGrid(response.analysis)}
-              </div>
+ renderTATResponses = () => {
+  const resp = this.state.responses;
+  return resp.map((response, index) => {
+    return(
+      <div key={index} className="graph-wrapper">
+        <h2 className="graph-header">PICTURE {response.pictureNumber}</h2>
+        <div className="descriptions">
+          <div className="clearfix">
+            <img src={require(`../images/tat-${response.pictureNumber}.jpg`)} alt="apperception" className="inset" />
+            <div>
+              <h3>Response</h3>             
+              {response.story}
             </div>
-          </div> 
+            <hr/>
+            <h3>Analysis</h3>
+            <div className="grid-container">
+              <div className="grid-item center"><b>Entity</b></div>
+              <div className="grid-item center"><b>Sentiment</b></div>
+              <div className="grid-item center"><b>Type</b></div>
+              <div className="grid-item center"><b>Mentions</b></div>
+              {this.renderGrid(response.analysis)}
+            </div>
+          </div>
         </div> 
+      </div> 
       )    
     });    
   }
 
-  render() {
+  renderPersonalInfo = () => {
+    const info = this.state.personal;
+    return info.map((answer, index) => {
+      return(
+        <li key={index}> 
+          {answer}
+        </li>
+      )
+      });
+  }
+
+  render = () => {
     const modus = this.state.modusOperandi;
     const needScale = this.state.needScale;
     const welsh = this.state.origenceIntellectance;
@@ -246,7 +290,6 @@ class Profiles extends React.Component {
       <div>
         <h1>TAT Responses</h1>
         <div className="graph-wrapper">
-          {/* <h2>View results of your Thematic Apperception Tests here</h2>  */}
           {this.renderTATResponses()}
           <h2>Key</h2>
           <div className="key">
@@ -260,6 +303,14 @@ class Profiles extends React.Component {
         {this.renderGraph(needScale)}
         {this.renderGraph(egogram)}
         {this.renderGraph(welsh)}
+        <h1>Personal Background</h1>
+        <div className="graph-wrapper">
+          <div className="info-box">
+            <ul className="personal-info"> 
+              {this.renderPersonalInfo()} 
+            </ul>
+          </div>
+        </div>
       </div>
     );
   }
@@ -267,20 +318,3 @@ class Profiles extends React.Component {
 }
 
 export default Profiles;
-
-/**
-Character: person mentioned in the response to the TAT.
-Sentiment: positive, negative, or ambivalent feelings associated with a person discussed.
-Positive sentiment: good feelings such as joy or warmth.
-Negative sentiment: bad feelings such as anger or fear.
-Ambivalent sentiment: conflicting or oscilating feelings. 
-
-
-Valence, as used in psychology, especially in discussing emotions, means the intrinsic attractiveness/"good"-ness (positive valence) or averseness/"bad"-ness (negative valence) of an event, object, or situation.[1] The term also characterizes and categorizes specific emotions. For example, emotions popularly referred to as "negative", such as anger and fear, have negative valence. Joy has positive valence. Positively valenced emotions are evoked by positively valenced events, objects, or situations. The term is also used to describe the hedonic tone of feelings, affect, certain behaviors (for example, approach and avoidance), goal attainment or nonattainment, and conformity with or violation of norms. Ambivalence can be viewed as conflict between positive and negative valence-carriers.
-
-
-
-
- */
-
- /* {this.state.story.replace(/\n/g, <br/>)} */

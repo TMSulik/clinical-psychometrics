@@ -98,3 +98,19 @@ export const surveyQuestions = [
       'Hard to tell']
   }
 ];
+
+// Sample filler text to show how it shoudl look
+// when the app is fully functional
+export const personalInfo = [
+  'Gender: Man', 
+  'Birth year: 1948',
+  'Childhood home: Suburban', 
+  'Siblings: Four or more', 
+  'Birth order: Youngest',
+  'Marital status: Previously',
+  'Childrearing: Yes', 
+  'Education: College',
+  'Major: Engineering',
+  'English speaker: Yes',
+  'Research data: No' 
+];

@@ -191,7 +191,7 @@ ul {
   padding-left: 8%;
   padding-bottom: 20px;
   margin: 12px 10%;
-  border: 12px solid #282c34; /* Shark */
+  border: 6px solid #282c34; /* Shark */
 }
  
 .tat-submit {
@@ -231,7 +231,7 @@ ul {
   padding-right: 30px;
   padding-bottom: 20px;
   margin: 12px 10%;
-  border: 12px solid #282c34; /* Shark */
+  border: 6px solid #282c34; /* Shark */
 }
 
 .question {
@@ -370,6 +370,43 @@ ul {
   padding: 10px;
   font-size: 16px;
   text-align: left;
+  display:flex; 
+  flex-direction:row;
+}
+
+.grid-row {
+  width: 100%;
+}
+
+.center {
+  text-align: center;
+}
+
+/*
+  ========================================
+  Demographics Box
+  ========================================
+*/
+
+.personal-info {
+  color: white;
+  font-size: 1em;
+  font-weight: 500;
+  text-align: left;
+  columns: 2;
+  height: 200px;
+  padding: 0 12px;
+  line-height: 25px;
+}
+
+.info-box {
+  margin: 12px 10%;
+  background-color: #7395AE; /* Bermuda Grey */
+  border: 6px solid #5D5C61; /* Scarpa Flow */
+  height: 200px;
+  overflow: visible;
+  max-width: 960px;
+  /* padding: 10px; */
 }
  
 /*
