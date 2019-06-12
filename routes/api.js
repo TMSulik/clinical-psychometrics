@@ -1,23 +1,17 @@
 const express = require("express");
-const router = express.Router();
+const app = express.Router();
 const db = require("../models");
 
-// Is this supposed to go here?
 const AYLIENTextAPI = require('aylien_textapi');
 const textapi = new AYLIENTextAPI({
   application_id: "a57f3ef6",
   application_key: "0e578f4cb6aeabd1e07ab094edc9ac0d"
 });
 
-// const unirest = require('unirest');
-
-// unirest.post(API_URL)
-//   .header("X-RapidAPI-Key", API_KEY)
-//   .end(function (result) {
-//     console.log(result.status, result.headers, result.body);
-//   });
-
 module.exports = app => {
+  // Heroku will crash without this line
+  // But it ruins parts of the app
+  //app.use('/', express.static(path.join(__dirname, '/client/build')));
 
   app.post('/api/traits/', (req, res) => {
     const traits = req.body;
@@ -46,7 +40,6 @@ module.exports = app => {
         });
     });
 
-    // Unit 18 Activity 19 populate exercise
   });
 
   app.get("/api/responses/", function(req, res) {
@@ -58,21 +51,6 @@ module.exports = app => {
         res.json(err);
       });
   });
-
-
-  // app.get("/api/stories", (req, res) => {
-  //   db.User.find({})
-  //     .then(function (dbStories) {
-  //       let hbsObject;
-  //       hbsObject = {
-  //         stories: dbStories
-  //       };
-  //       res.render("stories", hbsObject);
-  //     })
-  //     .catch(function (err) {
-  //       res.json(err);
-  //     });
-  // });
 
 };
 

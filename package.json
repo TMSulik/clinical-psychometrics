@@ -17,7 +17,7 @@
     "url": "git+https://github.com/TMSulik/clinical-psychometrics.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "T.M. Sulik",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/TMSulik/clinical-psychometrics/issues"
@@ -32,3 +32,5 @@
     "unirest": "^0.6.0"
   }
 }
+
+
